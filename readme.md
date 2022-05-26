@@ -3,3 +3,4 @@ Python 3.9.7
 django-admin startproject [이름] 
 python manage.py runserver  //서버실행
 python manage.py migrate  //기능들 적용 (db)
+python mange.py startapp [앱이름] // 앱 만들기
