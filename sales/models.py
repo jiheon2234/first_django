@@ -7,6 +7,9 @@ class 아이디(AbstractUser): #상속
     pass
 
 class Sale(models.Model):
+
+    def __str__(self) -> str:  #클래스 자체를 출력할때 나오는거
+        return self.last_name+self.first_name
     
     first_name = models.CharField(max_length=30) 
     last_name = models.CharField(max_length=30)

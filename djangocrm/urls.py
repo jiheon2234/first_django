@@ -20,5 +20,5 @@ from django.urls.conf import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('홈페이지/', include('sales.urls', namespace="homepage")), 
+    path('홈페이지/', include('sales.urls', namespace="홈페이지")), 
 ]
