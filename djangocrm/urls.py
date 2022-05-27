@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from sales.views import 홈페이지
+from django.urls.conf import include
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',홈페이지),
+    path('홈페이지/', include('sales.urls', namespace="homepage")), 
 ]
