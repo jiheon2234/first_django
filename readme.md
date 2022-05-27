@@ -22,3 +22,6 @@ from sales.models import Person
 Sale에 관리직원 등록
 관리직원 = Person.objects.get(회원__email="admin@admin.com")
 Sale.objects.create(first_name="길동",last_name="홍",age=200,person=관리직원)
+
+템플릿폴더만들기(templates) 아니면 sales밑 templates가 default
+setting.py의 TEMPLATES의 dir 안에 폴더 넣기
