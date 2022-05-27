@@ -24,7 +24,7 @@ class Person(models.Model):
     회원 = models.OneToOneField(아이디, on_delete=models.CASCADE) #1대1
 
     def __str__(self) -> str:
-        return self.회원.email
+        return self.회원.username
 
     #python manage.py migrate
 
