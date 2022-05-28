@@ -1,6 +1,7 @@
 from django.shortcuts import render     #render=랜더링생각
 from django.http import HttpResponse
 from .models import Sale
+from .forms import SaleForm
 # Create your views here.
 
 def 세일목록(request):
@@ -20,3 +21,11 @@ def 세일상세(request,pk): #urls.py에서받았던 pk를 받음
         "사람키":사람
     }
     return render(request,"folder/세일상세.html",context)
+
+def 세일_입력(request):
+    print(request.POST)
+    context={
+        "폼키": SaleForm(),
+    }
+
+    return render(request,"folder/세일_입력.html",context)

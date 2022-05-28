@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+       
+        
+    </head>
+    <body>
+        <p>세일을 입력해 주세요</p>
+       <form method="post">
+           {% csrf_token %}   <!--보안을 위한 토큰-->
+           <p>{{폼키.as_p}}</p>
+        <button type="submit">전송</button>
+    </form> 
+        
+    </body>
+</html>
