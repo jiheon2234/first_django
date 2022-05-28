@@ -5,6 +5,7 @@
         <title>업데이트</title>
     </head>
     <body>
+        <h1><a href="{% url '홈페이지:목록' %}">목록으로 돌아가기</a></h1>
         <p> {{사람키.first_name}} {{사람키.last_name}} 님의 수정 정보를 입력해 주세요</p>
         <form method="post">
             {% csrf_token %}

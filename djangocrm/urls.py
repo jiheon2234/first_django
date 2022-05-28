@@ -21,4 +21,5 @@ from django.urls.conf import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('홈페이지/', include('sales.urls', namespace="홈페이지")), 
+    ##namespace = 링크가 바뀔 때 한번에 자동적으로 바뀔 수 있게하는장치!!!! 
 ]
