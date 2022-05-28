@@ -37,6 +37,30 @@ def 세일_입력(request):
 
     return render(request,"folder/세일_입력.html",context)
 
+def 세일_업데이트(request,pk):
+    사람 = Sale.objects.get(id=pk)
+
+    폼=SaleForm()
+    if request.method=='POST':
+        폼 = SaleForm(request.POST)
+        if 폼.is_valid(): #유효성 체크
+            first_name=폼.cleaned_data["first_name"]
+            last_name=폼.cleaned_data["last_name"]
+            age=폼.cleaned_data["age"]
+            person=Person.objects.first()
+
+            사람.first_name = first_name
+            사람.last_name = last_name
+            사람.age=age
+            사람.save()
+
+            return redirect("/홈페이지")
+    context={
+        "폼키":폼,
+        "사람키" : 사람
+        }
+    
+    return render(request,"folder/세일_업데이트.html",context)
 """ def 세일_입력(request):
     폼=SaleForm()
     if request.method=='POST':
