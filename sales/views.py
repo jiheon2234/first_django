@@ -40,6 +40,28 @@ def 세일_입력(request):
 def 세일_업데이트(request,pk):
     사람 = Sale.objects.get(id=pk)
 
+    폼=SaleModelForm(instance=사람)
+    if request.method=='POST':
+
+        폼=SaleModelForm(request.POST,instance=사람)
+        if 폼.is_valid():
+            폼.save()
+            return redirect("/홈페이지")
+    context={
+        "폼키":폼,
+        "사람키" : 사람
+        }
+    
+    return render(request,"folder/세일_업데이트.html",context)
+
+def 세일_지우기(request,pk):
+    사람=Sale.objects.get(id=pk)
+    사람.delete()
+    return redirect("/홈페이지")
+
+""" def 세일_업데이트(request,pk):
+    사람 = Sale.objects.get(id=pk)
+
     폼=SaleForm()
     if request.method=='POST':
         폼 = SaleForm(request.POST)
@@ -60,7 +82,8 @@ def 세일_업데이트(request,pk):
         "사람키" : 사람
         }
     
-    return render(request,"folder/세일_업데이트.html",context)
+    return render(request,"folder/세일_업데이트.html",context) """
+    
 """ def 세일_입력(request):
     폼=SaleForm()
     if request.method=='POST':
