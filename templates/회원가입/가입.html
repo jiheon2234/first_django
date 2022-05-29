@@ -1,0 +1,11 @@
+{% extends '와꾸.html' %}
+{% block content %}
+        <p>가입해 주세요</p>
+       <form method="post">
+           {% csrf_token %}   <!--보안을 위한 토큰-->
+           <p>{{form.as_p}}</p>
+        <button type="submit">전송</button>
+    </form> 
+
+{% endblock content %}
+

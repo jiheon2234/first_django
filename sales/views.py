@@ -2,10 +2,16 @@ from operator import ge
 from django.shortcuts import render,redirect,reverse   #render=랜더링생각
 from django.http import HttpResponse
 from .models import Sale,Person
-from .forms import SaleForm,SaleModelForm
+from .forms import SaleForm,SaleModelForm,우리만의UserCreationForm
 from django.views import generic #장고 기본제공으로 한번에 만들기
 
 # Create your views here.
+
+class 회원가입View(generic.CreateView):
+    template_name = "회원가입/가입.html"
+    form_class = 우리만의UserCreationForm
+    def get_success_url(self) :
+        return reverse("로긴") 
 
 class 첫화면View(generic.TemplateView):
     template_name = "첫화면.html"
