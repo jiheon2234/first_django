@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-       
-        
-    </head>
-    <body>
+{% extends '와꾸.html' %}
+{% block content %}
         <h1><a href="{% url '홈페이지:목록' %}">목록으로 돌아가기</a></h1>
         <h1>이것이 고객 {{사람키.first_name}}님의 나이 정보 입니다</h1>
         <p>이 분의 나이는 {{사람키.age}}</p>
@@ -13,5 +7,4 @@
         
         <a href="{% url '홈페이지:업뎃' 사람키.pk %}">업데이트</a>
         <a href="{% url '홈페이지:지우기' 사람키.pk %}">지우기</a>
-    </body>
-</html>
+{% endblock content %}
