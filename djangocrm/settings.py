@@ -126,3 +126,4 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'sales.아이디' #등록
+LOGIN_REDIRECT_URL="/홈페이지" #록인시 홈페이지로

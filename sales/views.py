@@ -8,7 +8,7 @@ from django.views import generic #장고 기본제공으로 한번에 만들기
 # Create your views here.
 
 class 첫화면View(generic.TemplateView):
-    template_name: "첫화면.html"
+    template_name = "첫화면.html"
 ################################
 def 첫화면(request):
     return render(request, "첫화면.html") 
