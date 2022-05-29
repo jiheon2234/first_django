@@ -1,11 +1,25 @@
-from django.shortcuts import render,redirect     #render=랜더링생각
+from operator import ge
+from django.shortcuts import render,redirect,reverse   #render=랜더링생각
 from django.http import HttpResponse
 from .models import Sale,Person
 from .forms import SaleForm,SaleModelForm
+from django.views import generic #장고 기본제공으로 한번에 만들기
+
 # Create your views here.
 
+class 첫화면View(generic.TemplateView):
+    template_name: "첫화면.html"
+################################
 def 첫화면(request):
     return render(request, "첫화면.html") 
+
+
+class 세일목록View(generic.ListView):
+    template_name = "folder/세일목록.html"
+    queryset= Sale.objects.all()
+    context_object_name =  '사람키' #컨텍스트 집어넣기
+
+##########################
 def 세일목록(request):
     사람 = Sale.objects.all()
     context = {
@@ -14,6 +28,11 @@ def 세일목록(request):
     return render(request, "folder/세일목록.html", context) #context=html을 동적으로만드는 dict()
     #기본적으로 templates밑으로 바꿀러면 settings.py설정
 
+class 세일상세View(generic.DetailView):
+    template_name="folder/세일상세.html"
+    queryset = Sale.objects.all()
+    context_object_name = "사람키"
+#############################
 def 세일상세(request,pk): #urls.py에서받았던 pk를 받음
     # print(pk)
     사람 = Sale.objects.get(id=pk)
@@ -23,6 +42,13 @@ def 세일상세(request,pk): #urls.py에서받았던 pk를 받음
         "사람키":사람
     }
     return render(request,"folder/세일상세.html",context)
+
+class 세일_입력View(generic.CreateView):
+    template_name = "folder/세일_입력.html"
+    form_class = SaleModelForm
+    def get_success_url(self) :
+        return reverse("홈페이지:목록") #redirect
+
 
 def 세일_입력(request):
     폼=SaleModelForm()
@@ -39,6 +65,15 @@ def 세일_입력(request):
 
     return render(request,"folder/세일_입력.html",context)
 
+class 세일_업데이트View(generic.UpdateView):
+    template_name = "folder/세일_업데이트.html"
+    queryset = Sale.objects.all()
+    form_class = SaleModelForm
+    context_object_name = "사람키"
+    def get_success_url(self) -> str:
+        return reverse("홈페이지:목록")
+
+############################
 def 세일_업데이트(request,pk):
     사람 = Sale.objects.get(id=pk)
 
@@ -56,6 +91,12 @@ def 세일_업데이트(request,pk):
     
     return render(request,"folder/세일_업데이트.html",context)
 
+class 세일_지우기View(generic.DeleteView):
+    template_name = "folder/세일_지우기.html"
+    queryset = Sale.objects.all()
+    def get_success_url(self) :
+        return reverse("홈페이지:목록")
+###############################
 def 세일_지우기(request,pk):
     사람=Sale.objects.get(id=pk)
     사람.delete()
