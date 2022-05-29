@@ -4,6 +4,8 @@ from .models import Sale,Person
 from .forms import SaleForm,SaleModelForm
 # Create your views here.
 
+def 첫화면(request):
+    return render(request, "첫화면.html") 
 def 세일목록(request):
     사람 = Sale.objects.all()
     context = {
